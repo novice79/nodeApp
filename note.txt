@@ -1,0 +1,3 @@
+cordova plugin add cordova-plugin-inappbrowser
+
+npm i express express-session body-parser cookie-parser lodash moment socket.io -S
