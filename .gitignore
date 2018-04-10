@@ -16,5 +16,3 @@ test.js
 outputs/
 tmp/
 bak/
-nodeApp/www/
-nodeApp/platforms/

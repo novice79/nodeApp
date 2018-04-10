@@ -21,9 +21,9 @@
     "cordova": {
         "plugins": {
             "cordova-plugin-whitelist": {},
-            "nodejs-mobile-cordova": {},
             "cordova-plugin-inappbrowser": {},
-            "cordova-plugin-networkinterface": {}
+            "cordova-plugin-networkinterface": {},
+            "nodejs-mobile-cordova": {}
         },
         "platforms": [
             "android"

@@ -1,0 +1,16 @@
+Executable : D:\installed\Android\sdk\cmake\3.6.4111459\bin\cmake.exe
+arguments : 
+-HD:\github\nodeApp\nodeApp\platforms\android\src\com\janeasystems\cdvnodejsmobile\jni
+-BD:\github\nodeApp\nodeApp\platforms\android\.externalNativeBuild\cmake\release\armeabi-v7a
+-DANDROID_ABI=armeabi-v7a
+-DANDROID_PLATFORM=android-21
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\github\nodeApp\nodeApp\platforms\android\build\intermediates\cmake\release\obj\armeabi-v7a
+-DCMAKE_BUILD_TYPE=Release
+-DANDROID_NDK=D:\installed\Android\android-ndk-r14b
+-DCMAKE_CXX_FLAGS=
+-DCMAKE_TOOLCHAIN_FILE=D:\installed\Android\android-ndk-r14b\build\cmake\android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=D:\installed\Android\sdk\cmake\3.6.4111459\bin\ninja.exe
+-GAndroid Gradle - Ninja
+-DANDROID_STL=c++_shared
+jvmArgs : 
+
