@@ -1,3 +1,0 @@
-D:/github/nodeApp/nodeApp/platforms/android/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/nodejs-mobile-cordova-native-lib.dir
-D:/github/nodeApp/nodeApp/platforms/android/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
-D:/github/nodeApp/nodeApp/platforms/android/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir

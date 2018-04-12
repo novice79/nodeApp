@@ -1,19 +1,7 @@
 const fs = require('fs');
 const cordova = require('cordova-bridge');
-
-cordova.channel.on('message', function (msg) {
-    console.log('[node] received:', msg);
-    fs.writeFile('/sdcard/aaaa.txt', "Hey there! from nodejs on android", function (err) {
-        if (err) {
-            cordova.channel.send("The file created failed:"+JSON.stringify(err) );
-        } else {
-            cordova.channel.send("The file created success");
-        }
-        
-    });    
-});
-////////////////////////////////////////////////////
 const app = require('express')();
+const serveIndex = require('serve-index');
 const session = require('express-session');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -31,11 +19,37 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 const media_dir = '/sdcard/freego';
+const liter_dir = `${media_dir}/literature`
+const music_dir = `${media_dir}/music`
+const video_dir = `${media_dir}/video`
 // Create the log directory if it does not exist
 if (!fs.existsSync(media_dir)) {
     fs.mkdirSync(media_dir);
 }
+if (!fs.existsSync(liter_dir)) {
+    fs.mkdirSync(liter_dir);
+}
+if (!fs.existsSync(music_dir)) {
+    fs.mkdirSync(music_dir);
+}
+if (!fs.existsSync(video_dir)) {
+    fs.mkdirSync(video_dir);
+}
+cordova.channel.on('message', function (msg) {
+    console.log('[node] received:', msg);
+    fs.writeFile(`${liter_dir}/aaaa.txt`, "Hey there! from nodejs on android", function (err) {
+        if (err) {
+            cordova.channel.send("The file created failed:"+JSON.stringify(err) );
+        } else {
+            cordova.channel.send("The file created success");
+        }
+        
+    });    
+});
+////////////////////////////////////////////////////
 app.use(require('express').static(__dirname + '/public'));
+app.use('/media', require('express').static(media_dir), serveIndex(media_dir, {'icons': true}) );
+
 server.listen(app.get('port'), () => {
     console.log(`express listen on ${app.get('port')}`)
 });

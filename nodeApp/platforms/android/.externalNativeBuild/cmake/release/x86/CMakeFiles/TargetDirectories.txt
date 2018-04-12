@@ -1,3 +1,0 @@
-D:/github/nodeApp/nodeApp/platforms/android/.externalNativeBuild/cmake/release/x86/CMakeFiles/nodejs-mobile-cordova-native-lib.dir
-D:/github/nodeApp/nodeApp/platforms/android/.externalNativeBuild/cmake/release/x86/CMakeFiles/edit_cache.dir
-D:/github/nodeApp/nodeApp/platforms/android/.externalNativeBuild/cmake/release/x86/CMakeFiles/rebuild_cache.dir
