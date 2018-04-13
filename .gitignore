@@ -21,3 +21,4 @@ nodeApp/www/index.html
 nodeApp/platforms/android/assets/
 nodeApp/platforms/android/.externalNativeBuild/
 nodeApp/platforms/android/.gradle/
+cm.bat
