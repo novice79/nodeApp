@@ -8,9 +8,9 @@
     <div class="content">
    
       <div style="justify-content:space-around;margin-top:10px;">
-        <div v-if="nodejs_started && address"> nodejs服务监听在: http://{{address}}:8200 </div>
+        <div v-if="nodejs_started && address"> nodejs服务监听在: http://{{address}}:{{node_port}} </div>
         <div>{{node_msg}}</div>
-        <button class="btn primary" style="flex:1; margin-top:20px;" @click.prevent="create_file()">
+        <button class="btn primary" style="flex:1; margin-top:20px;" @click.prevent="get_file_list()">
           <h3 style="display:inline-block;margin:auto;">
             test create file
           </h3>
@@ -45,43 +45,24 @@ export default {
     }
   },
   created: function() {
-    this.$root.$on("on_qrcode", qr_code => {
-   
+    this.$root.$on("nodejs_svr_up", port => {
+      this.nodejs_started = true;
+      networkinterface.getWiFiIPAddress( ip=>{ this.address = ip });
+      this.node_port = port;
     });
-    document.addEventListener(
-      "deviceready",
-      () => {
-        this.device_ready = true;
-        nodejs.channel.setListener(msg=> {
-            console.log('[cordova] received: ' + msg);
-            this.node_msg = msg;
-        });
-        nodejs.start('main.js', (err)=> {
-          if (err) {
-              console.log(err);
-          } else {
-              console.log ('Node.js Mobile Engine Started');
-              this.nodejs_started = true;
-              
-          }
-        });
-        // To disable the stdout/stderr redirection to the Android logcat:
-        // nodejs.start('main.js', startupCallback, { redirectOutputToLogcat: false });
-
-        networkinterface.getWiFiIPAddress( ip=>{ this.address = ip });
-      },
-      false
-    );
+    this.$root.$on("node_msg", msg => {
+      this.node_msg = msg;
+    });
   },
   mounted() {
     this.app.on({ page: "home", preventClose: false, content: null }, this);//add this for onReady function 
   },
   data() {
     return {
+      node_port:'',
       node_msg:'',
       nodejs_started: false,
-      address: '',
-      device_ready: false
+      address: ''
     };
   },
   computed: {
@@ -90,8 +71,11 @@ export default {
     }
   },
   methods: {    
-    create_file(){
-      nodejs.channel.send('create file');
+    get_file_list(){
+      const msg = JSON.stringify({
+        cmd:'get_file_list'
+      })
+      nodejs.channel.send(msg);
     },
     exit_app(){
       navigator.app.exitApp();

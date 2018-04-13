@@ -202,10 +202,12 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
+  "cordova-android-support-gradle-release": "1.3.0",
   "cordova-plugin-file": "6.0.1",
   "cordova-plugin-inappbrowser": "2.0.2",
   "cordova-plugin-networkinterface": "1.2.0",
   "cordova-plugin-whitelist": "1.3.3",
+  "cordova-plugin-crosswalk-webview": "2.4.0",
   "nodejs-mobile-cordova": "0.1.4"
 };
 // BOTTOM OF METADATA

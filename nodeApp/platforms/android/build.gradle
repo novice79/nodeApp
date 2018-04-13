@@ -92,6 +92,8 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
+apply from: "cordova-android-support-gradle-release/node-cordova-android-support-gradle-release.gradle"
+apply from: "cordova-plugin-crosswalk-webview/node-xwalk.gradle"
 apply from: "nodejs-mobile-cordova/node-build.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 

@@ -7,6 +7,10 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-android-support-gradle-release": {
+      "ANDROID_SUPPORT_VERSION": "27.+",
+      "PACKAGE_NAME": "go.freeo.node"
+    },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "go.freeo.node"
     },
@@ -17,6 +21,14 @@
       "PACKAGE_NAME": "go.freeo.node"
     },
     "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "go.freeo.node"
+    },
+    "cordova-plugin-crosswalk-webview": {
+      "XWALK_VERSION": "23+",
+      "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+      "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+      "XWALK_MODE": "embedded",
+      "XWALK_MULTIPLEAPK": "true",
       "PACKAGE_NAME": "go.freeo.node"
     },
     "nodejs-mobile-cordova": {

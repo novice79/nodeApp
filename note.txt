@@ -1,3 +1,11 @@
 cordova plugin add cordova-plugin-inappbrowser
 
 npm i express express-session body-parser cookie-parser lodash moment socket.io -S
+
+
+cordova platform rm android --nosave
+cordova plugin rm cordova-plugin-crosswalk-webview
+rm -Rf plugins/cordova-plugin-crosswalk-webview node_modules/cordova-plugin-crosswalk-webview
+cordova platform add android --nosave
+
+after add xwalk, need reinstall nodemobile?

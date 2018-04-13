@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import 'noty/lib/noty.css'
 import App from './App'
-import './net'
 
 Vue.config.ignoredElements = ['home', 'product']
 
@@ -17,3 +16,4 @@ window.vm = new Vue({
   components: { App }
 })
 
+import './net'

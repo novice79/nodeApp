@@ -17,7 +17,7 @@
        under the License.
  */
 
-package go.freeo.node;
+package go.free.node;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

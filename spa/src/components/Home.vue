@@ -2,7 +2,7 @@
   <home data-page="true">
     <header class="header-bar">
       <div class="center">
-        <h1 class="title">【音乐/书籍】上传</h1>
+        <h1 class="title">【音乐/书籍/视频】上传</h1>
       </div>
     </header>
     <div class="content">
