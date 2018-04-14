@@ -70,25 +70,25 @@ export default {
     processFile(event) {
       if (event.target.files.length == 0) return;
       let file = event.target.files[0];
-      const allow_file_types = ["mp4", "png", "jpg", "gif", "bmp"];
-      let ext = file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
-      let valid = allow_file_types.indexOf(ext) > -1;
-      if (!valid) {
-        let n = new Noty({
-          text: "文件格式错误，只能上传媒体文件。",
-          layout: "center",
-          buttons: [
-            Noty.button("确定", "blue lighten-1", function() {
-              console.log("button 2 clicked");
-              n.close();
-            })
-          ]
-        }).show();
-        return;
-      }
+      // const allow_file_types = ["mp4", "png", "jpg", "gif", "bmp"];
+      // let ext = file.name
+      //   .split(".")
+      //   .pop()
+      //   .toLowerCase();
+      // let valid = allow_file_types.indexOf(ext) > -1;
+      // if (!valid) {
+      //   let n = new Noty({
+      //     text: "文件格式错误，只能上传媒体文件。",
+      //     layout: "center",
+      //     buttons: [
+      //       Noty.button("确定", "blue lighten-1", function() {
+      //         console.log("button 2 clicked");
+      //         n.close();
+      //       })
+      //     ]
+      //   }).show();
+      //   return;
+      // }
       net.upload_file(file);
     },
     test_sock(){

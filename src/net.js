@@ -19,7 +19,8 @@ class Net {
           vm.$emit('nodejs_svr_up', this.node_port);
           break;
         case 'get_file_list':
-          vm.$emit('node_msg', msg.list);
+          repo = msg.list;
+          vm.$emit('file_list_changed', msg.list);
           break;  
       }
     });

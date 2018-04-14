@@ -12,7 +12,7 @@
         <div>{{node_msg}}</div>
         <button class="btn primary" style="flex:1; margin-top:20px;" @click.prevent="get_file_list()">
           <h3 style="display:inline-block;margin:auto;">
-            test create file
+            显示二维码({{audio_count}})
           </h3>
         </button> 
         <button class="btn negative" style="flex:1; margin-top:20px;" @click.prevent="exit_app()">
@@ -53,12 +53,16 @@ export default {
     this.$root.$on("node_msg", msg => {
       this.node_msg = msg;
     });
+    this.$root.$on("file_list_changed", list => {
+      this.file_list = list;
+    });
   },
   mounted() {
     this.app.on({ page: "home", preventClose: false, content: null }, this);//add this for onReady function 
   },
   data() {
     return {
+      file_list:[],
       node_port:'',
       node_msg:'',
       nodejs_started: false,
@@ -66,8 +70,11 @@ export default {
     };
   },
   computed: {
-    is_empty() {
-      return ''
+    audio_count() {
+      const audio_type = ['audio/ogg', 'audio/mpeg', 'audio/wav', 'audio/x-wav', 'audio/flac'];
+      return _.reduce(this.file_list, (sum, f)=>{
+        return f.mime && _.includes(audio_type, f.mime) ? sum + 1 : sum;
+      }, 0)
     }
   },
   methods: {    
@@ -86,7 +93,7 @@ export default {
 
     },
     onReady() {
-      
+      this.file_list = repo;
     }
     
   }

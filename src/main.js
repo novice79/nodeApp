@@ -8,7 +8,7 @@ Vue.config.ignoredElements = ['home', 'product']
 
 require('phonon/dist/css/phonon.min.css')
 require('phonon/dist/js/phonon.js')
-
+window.repo = []
 /* eslint-disable no-new */
 window.vm = new Vue({
   el: '#app',
