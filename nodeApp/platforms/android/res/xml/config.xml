@@ -18,6 +18,9 @@
     <feature name="NodeJS">
         <param name="android-package" value="com.janeasystems.cdvnodejsmobile.NodeJS" />
     </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
     <name>资源库</name>
     <description>
         电子书籍、音乐、视频管理应用

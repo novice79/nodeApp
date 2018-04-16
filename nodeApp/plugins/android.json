@@ -33,6 +33,9 @@
     },
     "nodejs-mobile-cordova": {
       "PACKAGE_NAME": "go.freeo.node"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "go.free.node"
     }
   },
   "dependent_plugins": {}

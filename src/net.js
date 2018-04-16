@@ -4,10 +4,28 @@ import io from 'socket.io-client';
 import Peer from 'simple-peer'
 import adb from "./db";
 
+//all proceed after nodejs express server up
 class Net {
   constructor() {
     document.addEventListener('deviceready', this.init.bind(this), false);
     this.node_port = _.random(1025, 65534);
+  }
+  on_online(){
+    const networkState = navigator.connection.type;
+    if(networkState == Connection.WIFI){
+      networkinterface.getWiFiIPAddress( ip=>{ vm.$emit('wifi_address', ip); });      
+    } else {
+      vm.$emit('wifi_address', '');
+    }
+  }
+  on_offline(){
+    vm.$emit('wifi_address', '');
+  }
+  on_express_up(){
+    document.addEventListener("offline", this.on_offline.bind(this), false);
+    document.addEventListener("online", this.on_online.bind(this), false);
+    this.on_online();
+    vm.$emit('nodejs_svr_up', this.node_port);
   }
   init() {
     nodejs.channel.setListener(msg => {
@@ -15,8 +33,7 @@ class Net {
       msg = JSON.parse(msg)
       switch (msg.cmd) {
         case 'start_express':
-          console.log(msg.msg);
-          vm.$emit('nodejs_svr_up', this.node_port);
+          this.on_express_up()
           break;
         case 'get_file_list':
           repo = msg.list;

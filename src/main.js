@@ -4,7 +4,7 @@ import Vue from 'vue'
 import 'noty/lib/noty.css'
 import App from './App'
 
-Vue.config.ignoredElements = ['home', 'product']
+Vue.config.ignoredElements = ['home', 'music']
 
 require('phonon/dist/css/phonon.min.css')
 require('phonon/dist/js/phonon.js')

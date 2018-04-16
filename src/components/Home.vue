@@ -2,19 +2,44 @@
   <home data-page="true">
     <header class="header-bar">
       <div class="center">
-        <h1 class="title">【音乐/书籍】 管理</h1>
+        <h1 class="title">【音乐/书籍/视频】 管理</h1>
       </div>
     </header>
     <div class="content">
    
       <div style="justify-content:space-around;margin-top:10px;">
-        <div v-if="nodejs_started && address"> nodejs服务监听在: http://{{address}}:{{node_port}} </div>
+        <div v-if="nodejs_started"> {{wifi_state}}: http://{{address?address:'127.0.0.1'}}:{{node_port}} </div>
         <div>{{node_msg}}</div>
-        <button class="btn primary" style="flex:1; margin-top:20px;" @click.prevent="get_file_list()">
+        <button class="btn primary" style="flex:1; margin-top:20px;">
           <h3 style="display:inline-block;margin:auto;">
-            显示二维码({{audio_count}})
+            显示二维码
           </h3>
         </button> 
+        <button v-if="file_type.audio_count" class="btn primary" style="flex:1; margin-top:20px;" data-navigation="music">
+          <h3 style="display:inline-block;margin:auto;">
+            音乐({{file_type.audio_count}})
+          </h3>
+        </button>
+        <button v-if="file_type.video_count" class="btn primary" style="flex:1; margin-top:20px;">
+          <h3 style="display:inline-block;margin:auto;">
+            视频({{file_type.video_count}})
+          </h3>
+        </button>
+        <button v-if="file_type.pic_count" class="btn primary" style="flex:1; margin-top:20px;">
+          <h3 style="display:inline-block;margin:auto;">
+            图片({{file_type.pic_count}})
+          </h3>
+        </button>
+        <button v-if="file_type.book_count" class="btn primary" style="flex:1; margin-top:20px;">
+          <h3 style="display:inline-block;margin:auto;">
+            书籍({{file_type.book_count}})
+          </h3>
+        </button>
+        <button v-if="file_type.other_count" class="btn primary" style="flex:1; margin-top:20px;">
+          <h3 style="display:inline-block;margin:auto;">
+            其它({{file_type.other_count}})
+          </h3>
+        </button>
         <button class="btn negative" style="flex:1; margin-top:20px;" @click.prevent="exit_app()">
           <h3 style="display:inline-block;margin:auto;">
             退出程序
@@ -35,7 +60,6 @@ import adb from "../db";
 import net from "../net";
 import util from "../common/util"
 
-
   
 export default {
   name: "PhononHomePage",
@@ -47,9 +71,10 @@ export default {
   created: function() {
     this.$root.$on("nodejs_svr_up", port => {
       this.nodejs_started = true;
-      networkinterface.getWiFiIPAddress( ip=>{ this.address = ip });
       this.node_port = port;
+      this.get_file_list()
     });
+    this.$root.$on("wifi_address", ip=>{ this.address = ip });
     this.$root.$on("node_msg", msg => {
       this.node_msg = msg;
     });
@@ -70,11 +95,25 @@ export default {
     };
   },
   computed: {
-    audio_count() {
-      const audio_type = ['audio/ogg', 'audio/mpeg', 'audio/wav', 'audio/x-wav', 'audio/flac'];
-      return _.reduce(this.file_list, (sum, f)=>{
-        return f.mime && _.includes(audio_type, f.mime) ? sum + 1 : sum;
-      }, 0)
+    file_type() {      
+      let audio_count = 0, video_count = 0, pic_count = 0, book_count = 0, other_count = 0;
+      _.each(this.file_list,  f=>{
+        if( f.mime && _.includes(util.audio_type, f.mime) ) audio_count += 1
+        else if(f.mime && _.includes(util.video_type, f.mime)) video_count += 1
+        else if(f.mime && _.includes(util.pic_type, f.mime)) pic_count += 1
+        else if(f.mime && _.includes(util.book_type, f.mime)) book_count += 1
+        else other_count += 1
+      })
+      return {
+        audio_count, 
+        video_count,
+        pic_count,
+        book_count,
+        other_count
+      }
+    },
+    wifi_state(){
+      return this.address ? 'WIFI已连接' : 'WIFI未连接'
     }
   },
   methods: {    

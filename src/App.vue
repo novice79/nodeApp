@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <home :app="app"></home>
-    <product :app="app"></product>
+    <music :app="app"></music>
   </div>
 </template>
 
 <script>
 import Home from './components/Home.vue'
-import Product from './components/Product.vue'
+import Music from './components/Music.vue'
 
 export default {
   name: 'app',
@@ -36,7 +36,7 @@ export default {
 
   components: {
     Home,
-    Product
+    Music
   }
 }
 </script>

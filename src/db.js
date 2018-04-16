@@ -13,7 +13,8 @@ export default new Promise((resolve, reject) => {
             autoload: true,
             autoloadCallback: () => {
                 db = {
-                    user: mgrDB.getCollection("user") ? mgrDB.getCollection("user") : mgrDB.addCollection("user")
+                    user: mgrDB.getCollection("user") ? mgrDB.getCollection("user") : mgrDB.addCollection("user"),
+                    play_list: mgrDB.getCollection("play_list") ? mgrDB.getCollection("play_list") : mgrDB.addCollection("play_list")
                 }
                 resolve(db);
             },
